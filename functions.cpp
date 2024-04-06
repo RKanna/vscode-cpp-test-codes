@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//Always use Main function below the user defined Function
+//Always use Main function below the user defined Function to avoid function defined errors
 
 void myFunction (string name, int age, string location, double height) {
 
