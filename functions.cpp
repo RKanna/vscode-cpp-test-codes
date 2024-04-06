@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+//Always use Main function below the user defined Function
+
 void myFunction (string name, int age, string location, double height) {
 
     cout << "Enter your Age" << endl;
