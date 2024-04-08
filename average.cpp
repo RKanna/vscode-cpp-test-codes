@@ -14,7 +14,9 @@ void averageFunction() {
     // average = total/count; 
       //here, if total is declared int then automatic type conversion happens,
     //average also convered to int, to avoid this, i declared total as double.
-    average = static_cast<double>(total)/count;   
+    average = static_cast<double>(total)/count;
+    // average =(double)total/count;   
+    // average =(double)total/count; this also will work but its a older c style code
     //Line number 17, here total is integer so to convert the total to double data type
     //we using the static_cast<double>(total) 
     cout << average << endl;
