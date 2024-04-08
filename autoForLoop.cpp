@@ -9,6 +9,8 @@ void AutoLoopingInFor() {
 //New method of looping in c++ Learning
    for(auto test_Scores:test_Scores)
    cout << test_Scores << endl;
+
+   //This auto looping will work in Vectors also. (Test case use with temperature average calculation)
 }
 
 int main() {
