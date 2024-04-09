@@ -2,7 +2,8 @@
 #include <cstdlib>
 #include <ctime>
 using namespace std;
-void generateRandomNumber();   //Function Prototype Declaration
+void generateRandomNumber();   
+//Function Prototype Declaration
 //Because generateRandomNumber() its declared below the main function
 // So to tell the compiler i have created function, i declared function prototype in the starting of the program.
 
