@@ -1,26 +1,31 @@
 #include <iostream>
+#include <ctype.h>    //for using isalhpha() or isdigit() functions
 using namespace std;
 
 class personDetails
 {
 public:
-   string name;
+   double name;
    int age {0};
    long long rollNumber {0};  //long long only hold more digits 
    double height {0.0};
-
    personDetails()  //Constructor Function 
    //Constructor created using classname followed by paranthesis ()
    {
     cout << "Its a Exam Registration Demo" << endl;
     cout << "Enter the Person's Name" << endl;
     cin >> name;
+    if(isdigit(name)) {
+        
+    }
     cout << "Enter the Age of the person" << endl;
     cin >> age;
     cout << "Enter the Roll-Number" << endl;
     cin >> rollNumber;
     cout << "Enter the Height " << endl;
     cin >> height;
+   
+    
    }
 
    void DisplayFunction() {
