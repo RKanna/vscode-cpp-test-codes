@@ -2,7 +2,6 @@
 #include <vector>
 using namespace std;
 
-
 char selection {};
 string contactName {};
     long long contactNumber {};
