@@ -1,5 +1,7 @@
 #include <iostream>
 #include <vector>
+#include <tuple>
+#include <string>
 using namespace std;
 
 char selection {};
@@ -10,6 +12,17 @@ string contactName {};
     int serailNumber {0};
     int inputSerialNumber;
     int serial {1};
+
+// void selectionRedirection(char ele) {
+
+//     vector<tuple<int,string,long long>> page;
+
+   
+// }
+
+
+
+
 void phoneBook() {
     while (true)
     {
@@ -49,7 +62,8 @@ void phoneBook() {
             cout << "No contacts Available" << endl;
         }else {
             cout << "Contacts in " << selection << "...." << endl;
-            cout << "S.No" << "          " << "Name" << "                     " << "Mobile" << endl;   
+            cout << "S.No" << "          " << "Name" << "                     " << "Mobile" << endl;  
+            serial = 1; 
              for (const auto& pair : contactsVector) {
         if (pair.first.front() == toupper(selection) || pair.first.front() == tolower(selection)) {
             cout << serial++ << ")" << "           " << pair.first << "                  " << pair.second << endl;
@@ -58,21 +72,29 @@ void phoneBook() {
         }
          break; 
     case '2' :
+
         cout << "Enter the serial Number to Dial : " << endl;
         cin >> inputSerialNumber;
-        for(auto val:contactsVector){
-           if(inputSerialNumber == serial) {
-            cout << "Dialing....." << val.second << endl;
-        }
+        if(selection){
+        //    for(const auto& val:contactsVector)
+        //    {
+
+        //    if(inputSerialNumber == serial) {
+
+        //     cout << "Dialing....." << val.second << endl;
+        // }
+        // }
+         selectionRedirection(selection);
         }
         break;
-           
     default:
         break;
     }
 
     }
 }
+
+
 
 int main() {
     phoneBook();
