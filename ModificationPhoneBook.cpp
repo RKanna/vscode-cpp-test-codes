@@ -60,10 +60,10 @@ void phoneBook() {
                 cout << "Section and Entered selection do not match. Do you want to change section? (Yes/No): ";
                 cin >> changeSection;
                 if (changeSection == "no" || changeSection == "NO") {
-                    // previous_selection = '\0';
-                    previous_selection = selection;
-                    // continue;
-                    break;
+                    previous_selection = '\0';
+                    // previous_selection = selection;
+                    continue;
+                    // break;
                 }
                 
             }
