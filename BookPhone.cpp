@@ -77,6 +77,11 @@ public:
         }
     }
 
+    void goBackFunction(char& section) {
+    section = '\0';
+    }
+
+
     void run() {
         char option, section;
         bool changeSection;
@@ -128,11 +133,12 @@ public:
                     dial(section);
                     break;
                 case '3':
+                goBackFunction(section);
                     break;
                 default:
                     cout << "Invalid option!" << endl;
             }
-        } while (option != '3');
+        } while (option != '4');
     }
 };
 
