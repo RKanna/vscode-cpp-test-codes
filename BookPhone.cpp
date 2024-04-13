@@ -2,7 +2,8 @@
 #include <map>
 #include <vector>
 #include <iomanip>
-#include <algorithm>
+#include <cctype>
+#include <cstring>
 
 using namespace std;
 
@@ -15,11 +16,11 @@ class PhoneBook {
 private:
     map<char, vector<Contact>> contacts;
 
-    bool isValidSection(char section) {
+    bool checkValid(char section) {
         return (section >= 'A' && section <= 'Z');
     }
 
-    bool isMatchingSection(char section, const string& name) {
+    bool checkMatchSection(char section, const string& name) {
         return (toupper(name[0]) == section);
     }
 
@@ -28,23 +29,27 @@ private:
         cout << setw(4) << "S.No" << setw(15) << "Name" << setw(15) << "Mobile" << endl;
         int count = 1;
         for (const auto &contact : contacts[section]) {
-            cout << setw(4) << count++ << setw(15) << contact.name << setw(15) << contact.number << endl;
+        cout << setw(4) << count++ << setw(15) << contact.name << setw(15) << contact.number << endl;
         }
         cout << "> Total contacts: " << contacts[section].size() << endl;
     }
 
 public:
     void addContact(char section) {
+
         string name, number;
         cout << "Enter Contact Name: ";
         cin >> name;
-        if (!isMatchingSection(section, name)) {
+        if (!checkMatchSection(section, name)) {
             cout << "Section is \"" << section << "\" and entered name is starting with \"" << name[0] << "\", so it's not matched." << endl;
             cout << "Do you want to change section? (yes/no): ";
             string change;
             cin >> change;
+
             if (change == "yes") {
                 cout << "Enter Contact Number: ";
+
+
                 cin >> number;
                 section = toupper(name[0]);
             } else {
@@ -77,14 +82,23 @@ public:
         bool changeSection;
         do {
             cout << "+-+-+-+-+-+-+-+-+-+" << endl;
-            cout << "       PhoneBook" << endl;
+            cout << "        PhoneBook" << endl;
             cout << "+-+-+-+-+-+-+-+-+-+" << endl;
             cout << "Enter Section [A-Z] (type q to quit): ";
             cin >> option;
-            option = toupper(option);
-            if(option == 'Q')
+            // option = toupper(option);
+            // if(option == 'Q')
+            //     break;
+            char lowerValue = islower(option);
+            if (lowerValue && option == 'q') {
                 break;
-            if (!isValidSection(option)) {
+            } else if (option == 'Q') {
+                if (contacts.find(section) != contacts.end()) {
+                    displayContacts(section);
+                }
+            }
+           option = toupper(option);
+            if (!checkValid(option)) {
                 cout << "Invalid section!" << endl;
                 continue;
             }
@@ -92,7 +106,7 @@ public:
             changeSection = false;
             cout << endl;
 
-            cout << "Contacts in " << section << "..." << endl;
+            // cout << "Contacts in " << section << "..." << endl;
             if(contacts.find(section) != contacts.end()) {
                 displayContacts(section);
             } else {
@@ -127,3 +141,4 @@ int main() {
     phoneBook.run();
     return 0;
 }
+
