@@ -20,7 +20,10 @@ private:
         return (section >= 'A' && section <= 'Z');
     }
 
-    bool checkMatchSection(char section, const string& name) {
+    bool checkMatchSection(char section, const string& name) 
+    //But here, i used address of name, 
+    //because i don't want to change its original memory location
+    {
         return (toupper(name[0]) == section);
     }
 
@@ -40,13 +43,14 @@ public:
         string name, number;
         cout << "Enter Contact Name: ";
         cin >> name;
-        if (!checkMatchSection(section, name)) {
+        if (!checkMatchSection(section, name)) // Calling that function with actual name,
+        {
             cout << "Section is \"" << section << "\" and entered name is starting with \"" << name[0] << "\", so it's not matched." << endl;
             cout << "Do you want to change section? (yes/no): ";
             string change;
             cin >> change;
 
-            if (change == "yes") {
+            if (change == "yes" || change == "y") {
                 cout << "Enter Contact Number: ";
 
 
@@ -66,23 +70,23 @@ public:
         cout << "Contact '" << name << " : " << number << "' added successfully." << endl;
     }
 
-    void dial(char section) {
-        int serial;
-        cout << "Enter serial number to dial: ";
-        cin >> serial;
+void dial(char section) {
+    int serial;
+    cout << "Enter serial number to dial: ";
+    cin >> serial;
         if (serial > 0 && serial <= contacts[section].size()) {
-            cout << "Dialing..." << contacts[section][serial - 1].number << endl;
-        } else {
-            cout << "Invalid serial number!" << endl;
+         cout << "Dialing..." << contacts[section][serial - 1].number << endl;
+    } else {
+     cout << "Invalid serial number!" << endl;
         }
     }
 
-    void goBackFunction(char& section) {
-    section = '\0';
-    }
+    // void goBackFunction(char& section) {
+    // section = '\0';
+    // }
 
 
-    void run() {
+    void displayFunc() {
         char option, section;
         bool changeSection;
         do {
@@ -133,7 +137,7 @@ public:
                     dial(section);
                     break;
                 case '3':
-                goBackFunction(section);
+                //goBackFunction(section);
                     break;
                 default:
                     cout << "Invalid option!" << endl;
@@ -144,7 +148,7 @@ public:
 
 int main() {
     PhoneBook phoneBook;
-    phoneBook.run();
+    phoneBook.displayFunc();
     return 0;
 }
 
