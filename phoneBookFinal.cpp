@@ -23,14 +23,16 @@ void DisplayFunction() {
         cout << "Enter Section [A-Z] (Type q to Quit) : ";
         char userInput;
         cin >> userInput;
-
+        
         if (userInput == 'q') {
             break;
-        }
+        } 
+        
+        userInput = toupper(userInput);
+        
 
-        userInput = toupper(userInput); 
-
-        if (!isalpha(userInput) || userInput < 'A' || userInput > 'Z') {
+        if (!isalpha(userInput) || userInput < 'A' || userInput > 'Z') 
+        {
             cout << "Invalid input. Please enter a letter from A to Z or 'q' to quit." << endl;
             continue;
         }
@@ -54,7 +56,7 @@ void DisplayFunction() {
                     cin >> newEntry.userName;
                     if(newEntry.userName.at(0) != userInput) {
                         cout << "Section and Entered Name was not matched." << endl;
-                        cout << "Do you want Change Section (yes/no)" << endl;
+                        // cout << "Do you want Change Section (yes/no)" << endl;
                         char changeSection;
                         // while (true) {
                         //     cout << "Do you want to change the section? (yes/no): ";
@@ -128,7 +130,7 @@ void DisplayFunction() {
         } else {
             cout << "Existing entries for selection '" << userInput << "':" << endl;
             for (const auto& entry : dataMap[userInput]) {
-                cout << "Serial Number: " << entry.orderNumber << ", Username: " << entry.userName << ", Phone number: " << entry.userNumber << endl;
+                cout << "S.No: " << entry.orderNumber << ", Username: " << entry.userName << ", Phone number: " << entry.userNumber << endl;
             }
         }
     }
