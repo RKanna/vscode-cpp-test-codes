@@ -20,8 +20,6 @@ void CompareStrings()
      }else {
         cout << str2 << " & " << str2 <<  " both are same in length " << endl;
      }
-     
-
 }
 
 int main() {
