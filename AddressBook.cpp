@@ -1,26 +1,28 @@
 #include <algorithm>
 #include <iostream>
+#include <string>
 #include <vector>
 #include <algorithm>    //for remove_if() builtin function
 using namespace std;
 
 
-int option;
 
-struct Data {
+
+class AddressBook {
+
+    struct Data {
     int serial = 0;
     string name;
-    int DoorNo;
+    string DoorNo;
     string streetName, place, city;
     int pincode;
 
 };
 
-class AddressBook {
-
     public:
      vector<Data> vector_data;
      static int serialCounter;
+     int option;
 
 
      void pushFunction() {
@@ -64,21 +66,32 @@ class AddressBook {
         while (flagChar == 'Y' || flagChar == 'y') {
             Data newEntry;
         cout << "Enter Name " << endl;
-        cin >> newEntry.name;
+        cin.ignore();
+        // cin >> newEntry.name;
+        getline(cin, newEntry.name);
         cout << "Enter Door Numner" << endl;
-        cin >> newEntry.DoorNo;
+        // cin >> newEntry.DoorNo;
+        getline(cin, newEntry.DoorNo);
         cout << "Enter Street Name" << endl;
-        cin >> newEntry.streetName;
+        // cin >> newEntry.streetName;
+        getline(cin, newEntry.streetName);
         cout << "Enter Place" << endl;
-        cin >> newEntry.place;
+        cin.ignore();
+        // cin >> newEntry.place;
+        getline(cin, newEntry.place);
         cout << "Enter City " << endl;
-        cin >> newEntry.city;
+        // cin >> newEntry.city;
+        getline(cin, newEntry.city);
         cout << "Enter your Pincode " << endl;
         cin >> newEntry.pincode;
         newEntry.serial = ++serialCounter;
         vector_data.push_back(newEntry);
-        cout << "Do you want to add Another Address ? " << endl;
+        cout << "Do you want to add Another Address ? [Type : Y/N] " << endl;
         cin >> flagChar;
+        if(flagChar == 'n' || flagChar == 'N'){
+            cout << "Thanks for adding Address to our DB" << endl;
+            cout << "Your Address Addedd successfully" << endl;
+        }
         }
         pushFunction();
      }
@@ -96,6 +109,10 @@ class AddressBook {
      }
  
     void viewAddressFunction() {
+        if(vector_data.empty()){
+            cout << "There is no Data within the Vector to View " << endl;
+            pushFunction();
+          }
         int localSerial;
         displayAddressListWithName();
         cout << "Enter a serial Number for viewing the Full Details" << endl;
@@ -117,10 +134,15 @@ class AddressBook {
     }
 
     void editAddressFunction() {
+        if(vector_data.empty()){
+            cout << "There is no Data within the Vector to Edit " << endl;
+            pushFunction();
+          }
         int editSerial;
          displayAddressListWithName();
           cout << "Enter a serial Number for editing the Address details" << endl;
           cin >> editSerial;
+          
           bool found = false;
           char check;
                 for(Data& val : vector_data){
@@ -161,6 +183,10 @@ class AddressBook {
 
 
    void deleteAddressFunction() {
+    if(vector_data.empty()){
+            cout << "There is no Data within the Vector to Delete " << endl;
+            pushFunction();
+          }
          displayAddressListWithName();
          int deleteInput;
          cout << "Enter the Serial Number of Address You want to delete? : " << endl;
@@ -168,9 +194,24 @@ class AddressBook {
          for(Data& val : vector_data){
             if(deleteInput == val.serial){
 
+                //Lambda Function :
+                //[ capture clause ] (parameters) -> return-type  
+                      //   {   
+                     //definition of method   
+                    //} 
+            //   used here
+        //            ||
+           //         ||
+              //      \/
+
                 vector_data.erase(remove_if(vector_data.begin(), vector_data.end(),
-                                     [deleteInput](const Data& val) { return val.serial == deleteInput; }),
+                                     [deleteInput](const Data& val) 
+                                     { 
+                                        return val.serial == deleteInput; 
+                                     }),
                       vector_data.end());
+
+                      cout << "Address Deleted Successfully in the Row of " << val.serial << endl;
                 
             }
          }
