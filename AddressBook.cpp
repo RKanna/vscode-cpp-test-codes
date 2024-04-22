@@ -1,12 +1,10 @@
 #include <algorithm>
 #include <iostream>
+#include <locale>
 #include <string>
 #include <vector>
 #include <algorithm>    //for remove_if() builtin function
 using namespace std;
-
-
-
 
 class AddressBook {
 
@@ -41,6 +39,8 @@ class AddressBook {
 
         cin >> option;
 
+        cin.ignore();
+
         if(option == 1){
             addAddressFunction();
         }else if(option == 2) {
@@ -51,7 +51,7 @@ class AddressBook {
             deleteAddressFunction();
         }else if(option == 5){
             cout << "Exiting from Loop" << endl;
-            // return true;
+            return;
         }else {
             cout << "Invalid Option" << endl;
             pushFunction();
@@ -63,24 +63,18 @@ class AddressBook {
         char flagChar;
         cout << "Do you really want to add Address ?[Type : Y/N] " << endl;
         cin >> flagChar;
+        cin.ignore();
         while (flagChar == 'Y' || flagChar == 'y') {
             Data newEntry;
-        cout << "Enter Name " << endl;
-        cin.ignore();
-        // cin >> newEntry.name;
+        cout << "Enter Name" << endl;
         getline(cin, newEntry.name);
         cout << "Enter Door Numner" << endl;
-        // cin >> newEntry.DoorNo;
         getline(cin, newEntry.DoorNo);
         cout << "Enter Street Name" << endl;
-        // cin >> newEntry.streetName;
         getline(cin, newEntry.streetName);
         cout << "Enter Place" << endl;
-        cin.ignore();
-        // cin >> newEntry.place;
         getline(cin, newEntry.place);
         cout << "Enter City " << endl;
-        // cin >> newEntry.city;
         getline(cin, newEntry.city);
         cout << "Enter your Pincode " << endl;
         cin >> newEntry.pincode;
@@ -149,28 +143,35 @@ class AddressBook {
                    if(editSerial == val.serial){
                     cout << "Do you want to edit name ? [Y/N] " << endl;
                     cin >> check;
+                    cin.ignore();
                     if(check == 'y' || check == 'Y'){
                         cout << "Enter New Name : " << endl;
-                        cin >> val.name;
+                        getline(cin, val.name);
                         cout << "Enter Door No : " << endl;
-                        cin >> val.DoorNo;
+                        getline(cin, val.DoorNo);
                         cout << "Enter Street Name : " << endl;
-                        cin >> val.streetName;
+                        getline(cin, val.streetName);
                         cout << "Enter Place : " << endl;
-                        cin >> val.place;
+                        getline(cin, val.place);
                         cout << "Enter City : " << endl;
-                        cin >> val.city;
+                        getline(cin, val.city);
                         cout << "Enter Pincode : " << endl;
                         cin >> val.pincode;
                     }else if(check == 'n' || check == 'N'){
                         cout << "Enter Door No : " << endl;
-                        cin >> val.DoorNo;
+                        // cin.ignore();
+                        getline(cin, val.DoorNo);
                         cout << "Enter Street Name : " << endl;
-                        cin >> val.streetName;
+                        // cin.ignore();
+                        getline(cin, val.streetName);
                         cout << "Enter Place : " << endl;
-                        cin >> val.place;
+                        // cin >> val.place;
+                        // cin.ignore();
+                        getline(cin, val.place);
                         cout << "Enter City : " << endl;
-                        cin >> val.city;
+                        // cin >> val.city;
+                        // cin.ignore();
+                        getline(cin, val.city);
                         cout << "Enter Pincode : " << endl;
                         cin >> val.pincode;
                         cout << "Address Updated Successfully in a Row of " << val.serial << endl; 
