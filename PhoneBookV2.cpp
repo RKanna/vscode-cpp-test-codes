@@ -54,14 +54,13 @@ class PhoneBook {
                     firstLetter = toupper(item.contactName[0]);
                      if(toupper(option) == firstLetter){
                     cout << item.serial << ")\t" << item.contactName <<  "\t" << item.contactNumber << endl;
-                   }else if(firstLetter != toupper(option) && vector_data.empty()){
-                    cout << "There is No Contacts in section" << option << endl;
                    }
+                //    else if(firstLetter != toupper(option) && vector_data.empty()){
+                //     cout << "There is No Contacts in section" << option << endl;
+                //    }
                 }
               }
-              AddContactOption();
-
-              
+              AddContactOption(); 
          }
         //  else if(option == 'q') {
         //     cout << "Exiting...." << endl;
@@ -109,7 +108,8 @@ class PhoneBook {
         cout << "Contact " << newData.contactName << " : " << newData.contactNumber << " added Successfully" << endl;
         pushFunction();
             }else {
-              return;
+            //   return;
+            pushFunction();
             }
             return;
         }
@@ -145,4 +145,4 @@ int main() {
     PhoneBook Object_PhoneBook;
     Object_PhoneBook.pushFunction();
     return 0;
-} 
+}
