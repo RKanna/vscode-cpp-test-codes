@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 #include <conio.h>
-// #include <boost/asio.hpp>  
+// #include <boost/asios.hpp>
 // Used for Async Serial Communication package library
 using namespace std;
 
@@ -35,6 +35,8 @@ class Bus {
     };
 
 class ReservationSystem {
+
+    string currentUser;
 
     struct Data {
         string userName;
@@ -118,7 +120,7 @@ class ReservationSystem {
         string LoginPassword;
         char ch;
         ch = _getch();
-    while (ch != 13) {
+    while (ch != 13) {                   //13 is in ASCII   13 indicate Enter button,
         LoginPassword.push_back(ch);
         cout << "*";
         ch = _getch();
@@ -131,6 +133,7 @@ class ReservationSystem {
                 userExist = true;
                 if(LoginPassword == val.getPassword()){
                      cout << "Login Success" << endl;
+                     currentUser = val.userName;
                      viewAvailableBus();
                 }
                 else {
@@ -174,6 +177,7 @@ class ReservationSystem {
                 found = true;
                 if(inBus.availability == true){
                     cout << "Bus Booked Successfully" << endl;
+                    showStatusWithUser();
                     break;
                 }else {
                     cout << "Bus Not available to book" << endl;
@@ -184,6 +188,20 @@ class ReservationSystem {
         if(!found){
                cout << "Please Check the Route Number" << endl;
             }
+    }
+     
+
+    void showStatusWithUser(){
+        cout << "Current Booking Status" << endl;
+        for(auto val: userVector){
+            if(val.userName == currentUser){
+                cout << "User : " << currentUser;
+                
+            }else {
+                cout << "Hello Member";
+            }
+             
+        }
     }
 };
 
